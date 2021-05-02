@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
+    <link rel="stylesheet" href="{% static 'app.css'%}">
+</head>
+
+<body background={{weatherDict.bg}}>
+    <div class="main-content">
+        <header>
+            <h1 class="top">
+                <b>Weather App</b>
+            </h1>
+        </header>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.name }}
+            <button type="submit">Search</button>
+        </form>
+        <div class="box">
+            <article class="media">
+                <div class="media-left">
+                    <figure class="image is-50x50">
+                        <img src="http://openweathermap.org/img/w/{{weatherDict.icon}}.png" alt="Image">
+                    </figure>
+                </div>
+                <div class="media-content">
+                    <div class="content">
+                        <p>
+                            <span class="title">{{ weatherDict.city }}</span>
+                            <br>
+                            <span class="subtitle">{{weatherDict.temp}} C</span>
+                            <br> {{weatherDict.description}}
+                        </p>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <footer class="footer">
+            <p>Created By Sarthak</p>
+        </footer>
+    </body>
+    
+    </html>
